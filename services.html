@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — GLX Handyman</title>
+  <meta name="description" content="GLX Handyman offers drywall repair, carpentry, painting, plumbing, tile, doors, windows, and general home maintenance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ── Services Page Specific ───────────────────────────── */
+    .service-full-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+      min-height: 380px;
+      transition: background var(--dur) var(--ease);
+      scroll-margin-top: 100px;
+    }
+    .service-full-block:hover { background: var(--surface); }
+    .service-full-block.reversed { direction: rtl; }
+    .service-full-block.reversed > * { direction: ltr; }
+    .sfb-content {
+      padding: 64px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+    }
+    .sfb-visual {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface-2);
+      min-height: 320px;
+    }
+    .sfb-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.65;
+      transition: opacity 0.5s var(--ease), transform 0.6s var(--ease);
+    }
+    .service-full-block:hover .sfb-visual img {
+      opacity: 0.85;
+      transform: scale(1.04);
+    }
+    .sfb-num {
+      font-family: var(--font-display);
+      font-size: 96px;
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+    }
+    .sfb-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .sfb-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: 1px solid var(--border-light);
+      color: var(--text-dim);
+    }
+    .sfb-desc {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .sfb-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      transition: gap var(--dur) var(--ease);
+    }
+    .sfb-cta:hover { gap: 18px; }
+    .sfb-cta-line {
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+      vertical-align: middle;
+    }
+
+    /* ── Services intro stat row ─────────────────────────── */
+    .services-value-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      margin-bottom: 80px;
+    }
+    .svr-item {
+      padding: 32px 36px;
+      border-right: 1px solid var(--border);
+    }
+    .svr-item:last-child { border-right: none; }
+    .svr-num {
+      font-family: var(--font-display);
+      font-size: 40px;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .svr-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 1024px) {
+      .service-full-block { grid-template-columns: 1fr; }
+      .service-full-block.reversed { direction: ltr; }
+      .sfb-content { padding: 44px 32px; }
+      .sfb-visual { min-height: 240px; }
+      .services-value-row { grid-template-columns: 1fr 1fr; }
+      .svr-item:nth-child(2) { border-right: none; }
+      .svr-item:nth-child(3) { border-top: 1px solid var(--border); }
+    }
+    @media (max-width: 640px) {
+      .sfb-content { padding: 32px 24px; }
+      .services-value-row { grid-template-columns: 1fr; }
+      .svr-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .svr-item:last-child { border-bottom: none; }
+      .svr-item:nth-child(2) { border-right: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-veil"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- ── Navigation ──────────────────────────────────────────── -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="images/Grand%20Luxury%20Handyman%20Services%20logos-01.JPG" alt="GLX Logo" class="nav-logo-img" />
+          <div class="nav-logo-text">
+            <span class="nav-logo-main">GLX</span>
+            <span class="nav-logo-sub">Handyman Services</span>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <a href="contact.html" class="btn btn-primary nav-cta">
+          <span>Get a Quote</span>
+          <span class="btn-icon"></span>
+        </a>
+        <button class="nav-mobile-toggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="nav-mobile-menu">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="services.html" class="nav-link">Services</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <a href="contact.html" class="btn btn-primary" style="margin-top:20px">Get a Quote</a>
+  </div>
+
+  <!-- ── Page Hero ────────────────────────────────────────────── -->
+  <section class="page-hero" style="position:relative; overflow:hidden;">
+    <div style="position:absolute; inset:0; z-index:0;">
+      <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=80" alt="" style="width:100%; height:100%; object-fit:cover; opacity:0.12; filter:blur(2px);" />
+    </div>
+    <div class="container" style="position:relative; z-index:1;">
+      <div class="section-label reveal">
+        <span class="label">Our Services</span>
+      </div>
+      <h1 class="display-xl reveal reveal-delay-1" style="max-width: 780px; margin-top: 20px;">
+        EVERY JOB.<br>HANDLED.
+      </h1>
+      <p class="body-lg reveal reveal-delay-2" style="max-width: 520px; margin-top: 32px;">
+        GLX handles residential repairs and improvements of all sizes. If it's broken, we fix it. If it can be better, we improve it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Value Metrics ─────────────────────────────────────────── -->
+  <section style="padding: 60px 0;">
+    <div class="container">
+      <div class="services-value-row reveal">
+        <div class="svr-item">
+          <div class="svr-num">Same Day</div>
+          <div class="svr-label">Response Time</div>
+        </div>
+        <div class="svr-item">
+          <div class="svr-num">100%</div>
+          <div class="svr-label">Satisfaction Guarantee</div>
+        </div>
+        <div class="svr-item">
+          <div class="svr-num">Licensed</div>
+          <div class="svr-label">&amp; Fully Insured</div>
+        </div>
+        <div class="svr-item">
+          <div class="svr-num">Flat Rate</div>
+          <div class="svr-label">Transparent Pricing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Service Blocks ────────────────────────────────────────── -->
+  <div class="container" style="padding-bottom: var(--section-pad);">
+
+    <!-- 01 Drywall -->
+    <div id="drywall" class="service-full-block reveal">
+      <div class="sfb-content">
+        <div class="label">Service 01</div>
+        <h2 class="display-md">Drywall &amp;<br>Patching</h2>
+        <p class="sfb-desc">
+          Holes, dings, water damage, texture matching — no job is too small or too large. We repair and refinish so seamlessly, you won't know it was ever damaged.
+        </p>
+        <div class="sfb-tags">
+          <span class="sfb-tag">Hole Repair</span>
+          <span class="sfb-tag">Water Damage</span>
+          <span class="sfb-tag">Texture Match</span>
+          <span class="sfb-tag">Full Panels</span>
+        </div>
+        <a href="contact.html" class="sfb-cta">
+          Book This Service <span class="sfb-cta-line"></span>
+        </a>
+      </div>
+      <div class="sfb-visual">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="Drywall repair and patching" />
+        <div class="sfb-num">01</div>
+      </div>
+    </div>
+
+    <!-- 02 Carpentry -->
+    <div id="carpentry" class="service-full-block reversed reveal">
+      <div class="sfb-visual">
+        <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=800&q=80" alt="Carpentry and woodwork" />
+        <div class="sfb-num">02</div>
+      </div>
+      <div class="sfb-content">
+        <div class="label">Service 02</div>
+        <h2 class="display-md">Carpentry &amp;<br>Woodwork</h2>
+        <p class="sfb-desc">
+          Trim, baseboards, crown molding, shelving, cabinetry, and custom built-ins. We cut, fit, and finish with precision so it looks like it was always there.
+        </p>
+        <div class="sfb-tags">
+          <span class="sfb-tag">Trim &amp; Molding</span>
+          <span class="sfb-tag">Shelving</span>
+          <span class="sfb-tag">Built-ins</span>
+          <span class="sfb-tag">Cabinetry</span>
+        </div>
+        <a href="contact.html" class="sfb-cta">
+          Book This Service <span class="sfb-cta-line"></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 03 Painting -->
+    <div id="painting" class="service-full-block reveal">
+      <div class="sfb-content">
+        <div class="label">Service 03</div>
+        <h2 class="display-md">Painting &amp;<br>Finishing</h2>
+        <p class="sfb-desc">
+          Interior and exterior painting done right. Walls, ceilings, trim — clean lines, proper prep, no mess. We don't cut corners on preparation, and it shows in the result.
+        </p>
+        <div class="sfb-tags">
+          <span class="sfb-tag">Interior</span>
+          <span class="sfb-tag">Exterior</span>
+          <span class="sfb-tag">Trim &amp; Doors</span>
+          <span class="sfb-tag">Ceilings</span>
+        </div>
+        <a href="contact.html" class="sfb-cta">
+          Book This Service <span class="sfb-cta-line"></span>
+        </a>
+      </div>
+      <div class="sfb-visual">
+        <img src="https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?auto=format&fit=crop&w=800&q=80" alt="Interior painting project" />
+        <div class="sfb-num">03</div>
+      </div>
+    </div>
+
+    <!-- 04 Plumbing -->
+    <div id="plumbing" class="service-full-block reversed reveal">
+      <div class="sfb-visual">
+        <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=800&q=80" alt="Plumbing repair work" />
+        <div class="sfb-num">04</div>
+      </div>
+      <div class="sfb-content">
+        <div class="label">Service 04</div>
+        <h2 class="display-md">Plumbing<br>Repairs</h2>
+        <p class="sfb-desc">
+          Leaks, drips, slow drains, fixture replacement, toilet repairs — the small stuff that becomes a big problem when ignored. We handle it quickly, affordably.
+        </p>
+        <div class="sfb-tags">
+          <span class="sfb-tag">Leak Repair</span>
+          <span class="sfb-tag">Fixtures</span>
+          <span class="sfb-tag">Toilets</span>
+          <span class="sfb-tag">Faucets</span>
+        </div>
+        <a href="contact.html" class="sfb-cta">
+          Book This Service <span class="sfb-cta-line"></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 05 Tile & Flooring -->
+    <div id="tile" class="service-full-block reveal">
+      <div class="sfb-content">
+        <div class="label">Service 05</div>
+        <h2 class="display-md">Tile &amp;<br>Flooring</h2>
+        <p class="sfb-desc">
+          Bathroom tile, kitchen backsplashes, floor tile repairs, and grout work. Whether replacing a few cracked tiles or doing a full floor, the finish is clean and lasting.
+        </p>
+        <div class="sfb-tags">
+          <span class="sfb-tag">Bathroom Tile</span>
+          <span class="sfb-tag">Backsplash</span>
+          <span class="sfb-tag">Grout</span>
+          <span class="sfb-tag">Floor Repair</span>
+        </div>
+        <a href="contact.html" class="sfb-cta">
+          Book This Service <span class="sfb-cta-line"></span>
+        </a>
+      </div>
+      <div class="sfb-visual">
+        <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80" alt="Tile and flooring installation" />
+        <div class="sfb-num">05</div>
+      </div>
+    </div>
+
+    <!-- 06 Doors & Windows -->
+    <div id="doors" class="service-full-block reversed reveal">
+      <div class="sfb-visual">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=80" alt="Door and window installation" />
+        <div class="sfb-num">06</div>
+      </div>
+      <div class="sfb-content">
+        <div class="label">Service 06</div>
+        <h2 class="display-md">Doors &amp;<br>Windows</h2>
+        <p class="sfb-desc">
+          Sticking doors, broken locks, drafty windows, new installations — all handled. Interior and exterior, residential, done with the right tools the first time.
+        </p>
+        <div class="sfb-tags">
+          <span class="sfb-tag">Installation</span>
+          <span class="sfb-tag">Repair</span>
+          <span class="sfb-tag">Weatherstripping</span>
+          <span class="sfb-tag">Locks</span>
+        </div>
+        <a href="contact.html" class="sfb-cta">
+          Book This Service <span class="sfb-cta-line"></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 07 General Maintenance -->
+    <div id="maintenance" class="service-full-block reveal">
+      <div class="sfb-content">
+        <div class="label">Service 07</div>
+        <h2 class="display-md">General<br>Maintenance</h2>
+        <p class="sfb-desc">
+          Furniture assembly, power washing, caulking, gutter cleaning, light fixture replacement, and the list of things you've been putting off. One call handles it all.
+        </p>
+        <div class="sfb-tags">
+          <span class="sfb-tag">Assembly</span>
+          <span class="sfb-tag">Caulking</span>
+          <span class="sfb-tag">Power Washing</span>
+          <span class="sfb-tag">Gutters</span>
+        </div>
+        <a href="contact.html" class="sfb-cta">
+          Book This Service <span class="sfb-cta-line"></span>
+        </a>
+      </div>
+      <div class="sfb-visual">
+        <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?auto=format&fit=crop&w=800&q=80" alt="General home maintenance" />
+        <div class="sfb-num">07</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── CTA Strip ─────────────────────────────────────────────── -->
+  <section style="background: linear-gradient(135deg, #A8862A 0%, var(--accent) 40%, var(--accent-bright) 100%); padding: 56px 0;">
+    <div class="container">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+        <div>
+          <h2 class="display-md" style="color: var(--black);">Not Sure What You Need?</h2>
+          <p style="font-size:15px; color:rgba(0,0,0,0.6); margin-top:10px; font-weight:400;">
+            Call us. Describe it. We'll figure it out.
+          </p>
+        </div>
+        <div style="display:flex; gap:16px; flex-wrap:wrap;">
+          <a href="tel:+14847847239" class="btn" style="background:var(--black); color:var(--white);">
+            <span>Call Now</span>
+            <span class="btn-icon" style="background:var(--white);"></span>
+          </a>
+          <a href="contact.html" class="btn btn-outline" style="border-color:rgba(0,0,0,0.3); color:var(--black);">
+            <span>Send a Message</span>
+            <span class="btn-icon" style="background:var(--black);"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img src="images/Grand%20Luxury%20Handyman%20Services%20logos-01.JPG" alt="GLX Logo" class="footer-logo-img" />
+          <div class="footer-logo-main">GLX</div>
+          <div class="footer-logo-sub">Handyman Services</div>
+          <p class="footer-tagline">Professional repairs and home improvements done right, the first time.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <div class="footer-links">
+            <a href="services.html#drywall" class="footer-link">Drywall &amp; Patching</a>
+            <a href="services.html#carpentry" class="footer-link">Carpentry</a>
+            <a href="services.html#painting" class="footer-link">Painting</a>
+            <a href="services.html#plumbing" class="footer-link">Plumbing</a>
+            <a href="services.html#tile" class="footer-link">Tile &amp; Flooring</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <div class="footer-links">
+            <a href="about.html" class="footer-link">About GLX</a>
+            <a href="contact.html" class="footer-link">Get a Quote</a>
+            <a href="contact.html" class="footer-link">Contact Us</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <div class="footer-links">
+            <a href="tel:+14847847239" class="footer-link">(484) 784-7239</a>
+            <a href="mailto:info@glxhandyman.com" class="footer-link">info@glxhandyman.com</a>
+            <span class="footer-link" style="cursor:default;">Mon–Sat, 8am–6pm</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2025 GLX Handyman Services. All rights reserved.</span>
+        <span class="footer-copy">Licensed &amp; Insured</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Chatbot Widget ──────────────────────────────────────── -->
+  <button class="chatbot-toggle" aria-label="Chat with us">
+    <svg class="chat-open" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/><path d="M7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
+    <svg class="chat-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+  </button>
+  <div class="chatbot-window">
+    <div class="chatbot-header">
+      <div class="chatbot-header-dot"></div>
+      <div>
+        <div class="chatbot-header-text">GLX Handyman</div>
+        <div class="chatbot-header-sub">Usually replies instantly</div>
+      </div>
+    </div>
+    <div class="chatbot-messages" id="chatMessages">
+      <div class="chat-msg bot">Hey there! I'm the GLX assistant. How can I help you today?</div>
+    </div>
+    <div class="chatbot-quick-replies" id="chatQuickReplies">
+      <button class="chatbot-quick-btn" data-msg="I need a quote">Get a Quote</button>
+      <button class="chatbot-quick-btn" data-msg="What services do you offer?">Services</button>
+      <button class="chatbot-quick-btn" data-msg="What are your hours?">Hours</button>
+      <button class="chatbot-quick-btn" data-msg="How do I contact you?">Contact Info</button>
+    </div>
+    <div class="chatbot-input-row">
+      <input class="chatbot-input" id="chatInput" type="text" placeholder="Type a message..." />
+      <button class="chatbot-send" id="chatSend" aria-label="Send">
+        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

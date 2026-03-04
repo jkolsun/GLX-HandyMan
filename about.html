@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Grand Luxury Handyman Services</title>
+  <meta name="description" content="Grand Luxury Handyman Services — Montgomery County's trusted general contractor. Learn about founder Nazye Boggs and our commitment to luxury craftsmanship." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ── About Page Specific ──────────────────────────────── */
+
+    /* Full-bleed statement */
+    .statement-section {
+      padding: 120px 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .statement-section::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0; left: 0;
+      width: 4px;
+      background: var(--accent);
+    }
+    .statement-text {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 68px);
+      line-height: 1.1;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      max-width: 900px;
+    }
+    .statement-text em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    /* Values grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+    }
+    .value-item {
+      padding: 52px;
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      position: relative;
+      transition: background var(--dur) var(--ease);
+    }
+    .value-item:hover { background: var(--surface); }
+    .value-item:nth-child(2n) { border-right: none; }
+    .value-item:nth-last-child(-n+2) { border-bottom: none; }
+    .value-icon-line {
+      width: 40px;
+      height: 3px;
+      background: var(--accent);
+      margin-bottom: 28px;
+    }
+    .value-title {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.5vw, 32px);
+      color: var(--text);
+      letter-spacing: 0.03em;
+      margin-bottom: 14px;
+    }
+    .value-text {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* About split layout */
+    .about-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: start;
+      padding: var(--section-pad) 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .about-split-left {
+      padding-right: 80px;
+      border-right: 1px solid var(--border);
+    }
+    .about-split-right {
+      padding-left: 80px;
+    }
+    .about-portrait {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--surface-2);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .about-portrait img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.75;
+    }
+    .portrait-accent {
+      position: absolute;
+      bottom: -2px;
+      left: -2px;
+      width: 80px;
+      height: 80px;
+      background: var(--accent);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .portrait-accent-text {
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--black);
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* Why GLX list */
+    .why-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .why-item {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .why-item:last-child { border-bottom: none; }
+    .why-bullet {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-top: 8px;
+    }
+    .why-text {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+    .why-text strong { color: var(--text); font-weight: 500; }
+
+    @media (max-width: 1024px) {
+      .about-split { grid-template-columns: 1fr; }
+      .about-split-left { padding-right: 0; border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 60px; }
+      .about-split-right { padding-left: 0; padding-top: 60px; }
+      .values-grid { grid-template-columns: 1fr; }
+      .value-item { border-right: none; }
+      .value-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+      .value-item:last-child { border-bottom: none; }
+    }
+    @media (max-width: 640px) {
+      .value-item { padding: 36px 28px; }
+      .statement-section { padding: 72px 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-veil"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- ── Navigation ──────────────────────────────────────────── -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="images/Grand%20Luxury%20Handyman%20Services%20logos-01.JPG" alt="GLX Logo" class="nav-logo-img" />
+          <div class="nav-logo-text">
+            <span class="nav-logo-main">GLX</span>
+            <span class="nav-logo-sub">Handyman Services</span>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <a href="contact.html" class="btn btn-primary nav-cta">
+          <span>Get a Quote</span>
+          <span class="btn-icon"></span>
+        </a>
+        <button class="nav-mobile-toggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="nav-mobile-menu">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="services.html" class="nav-link">Services</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <a href="contact.html" class="btn btn-primary" style="margin-top:20px">Get a Quote</a>
+  </div>
+
+  <!-- ── Page Hero ────────────────────────────────────────────── -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-label reveal">
+        <span class="label">About GLX</span>
+      </div>
+      <h1 class="display-xl reveal reveal-delay-1" style="max-width: 740px; margin-top: 20px;">
+        BUILT ON<br>TRUST.
+      </h1>
+      <p class="body-lg reveal reveal-delay-2" style="max-width: 500px; margin-top: 32px;">
+        A decade of showing up, doing the work, and leaving it better than we found it. That's GLX.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Statement ─────────────────────────────────────────────── -->
+  <section class="statement-section">
+    <div class="container">
+      <p class="statement-text reveal">
+        We started GLX because homeowners deserve a handyman who <em>shows up on time,</em> tells you the real price upfront, and doesn't leave until the job is done <em>right.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── About Split ───────────────────────────────────────────── -->
+  <section>
+    <div class="container">
+      <div class="about-split">
+        <div class="about-split-left">
+          <div class="about-portrait reveal">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" alt="GLX Handyman — Nazye Boggs" />
+            <div class="portrait-accent">
+              <div class="portrait-accent-text">10+ YRS<br>EXPERIENCE</div>
+            </div>
+          </div>
+          <div class="timeline reveal">
+            <div class="timeline-item">
+              <div class="timeline-year">Founded</div>
+              <p class="timeline-text">GLX Handyman was built from a simple belief: homeowners deserve better service than they usually get.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">Growth</div>
+              <p class="timeline-text">Word of mouth built our reputation. 500+ jobs completed across the region — and counting.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">Today</div>
+              <p class="timeline-text">Fully licensed, fully insured, and committed to the same standard that earned us every 5-star review.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-split-right reveal reveal-delay-2">
+          <div class="section-label" style="margin-bottom: 40px;">
+            <span class="label">Why Choose GLX</span>
+          </div>
+          <h2 class="display-md" style="margin-bottom: 40px;">We Work Like<br>It's Our House.</h2>
+
+          <div class="why-list">
+            <div class="why-item">
+              <div class="why-bullet"></div>
+              <p class="why-text"><strong>We're on time.</strong> We don't give you a 4-hour window and make you wait. We show up when we say we will.</p>
+            </div>
+            <div class="why-item">
+              <div class="why-bullet"></div>
+              <p class="why-text"><strong>We price it straight.</strong> You get a clear estimate before any work begins. No surprises on the invoice.</p>
+            </div>
+            <div class="why-item">
+              <div class="why-bullet"></div>
+              <p class="why-text"><strong>We clean up.</strong> We leave your home cleaner than we found it. Every time.</p>
+            </div>
+            <div class="why-item">
+              <div class="why-bullet"></div>
+              <p class="why-text"><strong>We stand behind it.</strong> If something isn't right, we come back and make it right. No charge.</p>
+            </div>
+            <div class="why-item">
+              <div class="why-bullet"></div>
+              <p class="why-text"><strong>We're licensed and insured.</strong> For your protection and ours. Every job, every time.</p>
+            </div>
+          </div>
+
+          <a href="contact.html" class="btn btn-primary" style="margin-top: 48px;">
+            <span>Book Your Service</span>
+            <span class="btn-icon"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Values ────────────────────────────────────────────────── -->
+  <section style="padding: var(--section-pad) 0; border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div class="section-label reveal" style="margin-bottom: 56px;">
+        <span class="label">How We Work</span>
+      </div>
+      <div class="values-grid reveal">
+        <div class="value-item">
+          <div class="value-icon-line"></div>
+          <div class="value-title">Honest Pricing</div>
+          <p class="value-text">We quote the job in full before we start. No hidden fees, no upsells, no surprises. What we quote is what you pay.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-icon-line"></div>
+          <div class="value-title">Skilled Hands</div>
+          <p class="value-text">Every job is handled by someone who knows what they're doing. We don't guess — we know. Over a decade of real-world experience.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-icon-line"></div>
+          <div class="value-title">Respect For Your Home</div>
+          <p class="value-text">We protect your floors, your furniture, your walls. We work carefully and leave the space clean when we're done.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-icon-line"></div>
+          <div class="value-title">Guaranteed Work</div>
+          <p class="value-text">If the job isn't right, we make it right. We stand behind our work with a satisfaction guarantee — no arguments, no hassle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Process ────────────────────────────────────────────────── -->
+  <section style="padding: var(--section-pad) 0; border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div class="section-label reveal" style="margin-bottom: 56px;">
+        <span class="label">The GLX Process</span>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-num">01</div>
+        <div>
+          <div class="process-title">Contact Us</div>
+          <p class="process-text">Call, text, or send us a message. Tell us what needs fixing. We respond the same day and can usually schedule within 48 hours.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-num">02</div>
+        <div>
+          <div class="process-title">We Assess &amp; Quote</div>
+          <p class="process-text">A GLX professional visits your home, evaluates the job, and gives you a clear written estimate. No pressure. No obligation.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-num">03</div>
+        <div>
+          <div class="process-title">Work Gets Done</div>
+          <p class="process-text">We complete the job using quality materials and proper technique. We work efficiently without rushing — because rushed work costs more later.</p>
+        </div>
+      </div>
+      <div class="process-step reveal" style="border-bottom:none;">
+        <div class="process-num">04</div>
+        <div>
+          <div class="process-title">You Approve. Done.</div>
+          <p class="process-text">We walk you through the completed work. You approve it. We invoice you for exactly what was quoted. Clean finish, every time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ──────────────────────────────────────────────────── -->
+  <section style="padding: var(--section-pad) 0;">
+    <div class="container">
+      <div class="reveal" style="text-align: center;">
+        <h2 class="display-lg">Ready To Work<br>Together?</h2>
+        <p class="body-md" style="max-width: 400px; margin: 24px auto 40px;">
+          Tell us what you need. We'll handle the rest.
+        </p>
+        <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+          <a href="contact.html" class="btn btn-primary">
+            <span>Get a Free Quote</span>
+            <span class="btn-icon"></span>
+          </a>
+          <a href="tel:+14847847239" class="btn btn-outline">
+            <span>(484) 784-7239</span>
+            <span class="btn-icon"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img src="images/Grand%20Luxury%20Handyman%20Services%20logos-01.JPG" alt="GLX Logo" class="footer-logo-img" />
+          <div class="footer-logo-main">GLX</div>
+          <div class="footer-logo-sub">Handyman Services</div>
+          <p class="footer-tagline">Professional repairs and home improvements done right, the first time.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <div class="footer-links">
+            <a href="services.html#drywall" class="footer-link">Drywall &amp; Patching</a>
+            <a href="services.html#carpentry" class="footer-link">Carpentry</a>
+            <a href="services.html#painting" class="footer-link">Painting</a>
+            <a href="services.html#plumbing" class="footer-link">Plumbing</a>
+            <a href="services.html#tile" class="footer-link">Tile &amp; Flooring</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <div class="footer-links">
+            <a href="about.html" class="footer-link">About GLX</a>
+            <a href="contact.html" class="footer-link">Get a Quote</a>
+            <a href="contact.html" class="footer-link">Contact Us</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <div class="footer-links">
+            <a href="tel:+14847847239" class="footer-link">(484) 784-7239</a>
+            <a href="mailto:info@glxhandyman.com" class="footer-link">info@glxhandyman.com</a>
+            <span class="footer-link" style="cursor:default;">Mon–Sat, 8am–6pm</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2025 GLX Handyman Services. All rights reserved.</span>
+        <span class="footer-copy">Licensed &amp; Insured</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Chatbot Widget ──────────────────────────────────────── -->
+  <button class="chatbot-toggle" aria-label="Chat with us">
+    <svg class="chat-open" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/><path d="M7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
+    <svg class="chat-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+  </button>
+  <div class="chatbot-window">
+    <div class="chatbot-header">
+      <div class="chatbot-header-dot"></div>
+      <div>
+        <div class="chatbot-header-text">GLX Handyman</div>
+        <div class="chatbot-header-sub">Usually replies instantly</div>
+      </div>
+    </div>
+    <div class="chatbot-messages" id="chatMessages">
+      <div class="chat-msg bot">Hey there! I'm the GLX assistant. How can I help you today?</div>
+    </div>
+    <div class="chatbot-quick-replies" id="chatQuickReplies">
+      <button class="chatbot-quick-btn" data-msg="I need a quote">Get a Quote</button>
+      <button class="chatbot-quick-btn" data-msg="What services do you offer?">Services</button>
+      <button class="chatbot-quick-btn" data-msg="What are your hours?">Hours</button>
+      <button class="chatbot-quick-btn" data-msg="How do I contact you?">Contact Info</button>
+    </div>
+    <div class="chatbot-input-row">
+      <input class="chatbot-input" id="chatInput" type="text" placeholder="Type a message..." />
+      <button class="chatbot-send" id="chatSend" aria-label="Send">
+        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
