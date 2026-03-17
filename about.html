@@ -165,9 +165,30 @@
       .value-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
       .value-item:last-child { border-bottom: none; }
     }
+    @media (max-width: 768px) {
+      /* Hide gradient orbs on mobile */
+      .gradient-orb { display: none; }
+
+      .statement-section { padding: 72px 0; overflow: hidden; }
+      .statement-text { font-size: clamp(26px, 6vw, 40px); }
+
+      .about-portrait { aspect-ratio: 4/3; }
+      .portrait-accent { width: 64px; height: 64px; }
+      .portrait-accent-text { font-size: 9px; }
+
+      .why-item { gap: 14px; padding: 20px 0; }
+      .why-text { font-size: 14px; }
+
+      .about-split-left { padding-bottom: 40px; }
+      .about-split-right { padding-top: 40px; }
+
+      .value-item { padding: 36px 24px; }
+      .value-title { font-size: clamp(20px, 5vw, 28px); }
+      .value-text { font-size: 13px; }
+    }
     @media (max-width: 640px) {
-      .value-item { padding: 36px 28px; }
-      .statement-section { padding: 72px 0; }
+      .value-item { padding: 28px 20px; }
+      .statement-section { padding: 56px 0; }
     }
   </style>
 </head>

@@ -444,7 +444,11 @@
       .ticker-item { font-size: 12px; padding-right: 32px; }
 
       /* ── Services Preview ── */
-      .services-header { gap: 16px; }
+      .services-header { gap: 16px; grid-template-columns: 1fr; }
+
+      /* ── Hide gradient orbs & floating elements on mobile ── */
+      .gradient-orb { display: none; }
+      .floating-line, .floating-cross { display: none; }
 
       /* ── How It Works ── */
       .hiw-step { padding: 32px 24px; }
@@ -452,17 +456,23 @@
       .hiw-text { font-size: 13px; }
 
       /* ── Before/After ── */
-      .ba-wrapper { gap: 20px; }
+      .ba-wrapper { gap: 16px; grid-template-columns: 1fr; }
+      .ba-slider { aspect-ratio: 3/2 !important; }
       .ba-label { font-size: 9px; padding: 4px 10px; }
 
       /* ── Testimonials ── */
       .testimonials-grid { gap: 12px; }
 
       /* ── CTA ── */
-      .cta-phone { font-size: clamp(24px, 6vw, 36px); }
+      .cta-phone { font-size: clamp(24px, 7vw, 36px); }
 
       /* ── Featured Header ── */
-      .featured-header { gap: 16px; margin-bottom: 32px; }
+      .featured-header { gap: 16px; margin-bottom: 32px; grid-template-columns: 1fr; }
+
+      /* ── Ensure no horizontal overflow ── */
+      .hero, .testi-carousel, .featured-work, .services-preview, .how-it-works, .cta-section {
+        overflow-x: clip;
+      }
     }
 
     @media (max-width: 480px) {
@@ -472,7 +482,10 @@
         width: 100%;
         max-width: 280px;
       }
-      .hero-actions .btn { width: 100%; justify-content: center; }
+      .hero-actions .btn { width: 100%; justify-content: center; min-height: 52px; }
+
+      /* ── Before/After stacks vertically ── */
+      .ba-slider { aspect-ratio: 4/3 !important; }
     }
 
     /* ── Testimonial Carousel ──────────────────────────────── */
@@ -574,9 +587,22 @@
     }
 
     @media (max-width: 768px) {
-      .testi-carousel { padding: 28px 0; }
-      .testi-card { width: 280px; padding: 20px; }
-      .testi-carousel::before, .testi-carousel::after { width: 40px; }
+      .testi-carousel { padding: 24px 0; overflow: hidden; }
+      .testi-card {
+        width: 270px;
+        padding: 18px 20px;
+        gap: 10px;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: var(--surface);
+      }
+      .testi-card:hover { transform: none; box-shadow: none; }
+      .testi-carousel::before, .testi-carousel::after { width: 30px; }
+      .testi-card-quote { font-size: 13px; line-height: 1.5; }
+      .testi-card-avatar { width: 30px; height: 30px; font-size: 13px; }
+      .testi-card-name { font-size: 12px; }
+      .testi-card-meta { font-size: 10px; }
+      .testi-card-stars { font-size: 11px; }
     }
 
     /* Hide mobile-only elements on desktop */

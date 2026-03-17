@@ -38,7 +38,7 @@
 
 /* ── Reset ─────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
 body {
   background: var(--black);
   color: var(--text);
@@ -993,7 +993,7 @@ footer {
   /* ── Nav Mobile ── */
   .nav { padding: 16px 0; }
   .nav-links, .nav-cta { display: none; }
-  .nav-mobile-toggle { display: flex; }
+  .nav-mobile-toggle { display: flex; min-height: 44px; min-width: 44px; justify-content: center; align-items: center; }
   .nav-logo-img { width: 36px; height: 36px; }
   .nav-logo-main { font-size: 22px; }
   .nav-logo-sub { font-size: 8px; letter-spacing: 0.2em; }
@@ -1013,6 +1013,9 @@ footer {
     text-align: left;
     opacity: 0;
     transform: translateX(-20px);
+    min-height: 64px;
+    display: flex;
+    align-items: center;
   }
   .nav-mobile-menu.open .nav-link {
     animation: mobileSlideInLeft 0.5s var(--ease-out) forwards;
@@ -1024,6 +1027,7 @@ footer {
   .nav-mobile-menu.open .btn {
     opacity: 0;
     animation: mobileSlideUp 0.5s var(--ease-out) 0.45s forwards;
+    min-height: 52px;
   }
 
   /* ── Container ── */
@@ -1034,6 +1038,27 @@ footer {
   .display-lg { font-size: clamp(32px, 8vw, 42px); }
   .display-md { font-size: clamp(26px, 6vw, 32px); }
   .display-sm { font-size: clamp(20px, 5vw, 24px); }
+
+  /* ── Gradient Orbs — Mobile Performance ── */
+  .gradient-orb {
+    display: none;
+  }
+  .floating-line, .floating-cross {
+    display: none;
+  }
+  /* Keep one subtle orb per major section on tablet+ */
+  .hero .gradient-orb:first-of-type {
+    display: block;
+    width: 250px !important;
+    height: 250px !important;
+    filter: blur(80px);
+    opacity: 0.6;
+  }
+
+  /* ── Section Mesh — Simplified for mobile ── */
+  .section-mesh::before {
+    opacity: 0.5;
+  }
 
   /* ── Stats ── */
   .stats-bar { padding: 40px 0; }
@@ -1056,10 +1081,29 @@ footer {
     grid-template-columns: 32px 1fr auto;
     gap: 12px;
     padding: 24px 0;
+    min-height: 60px;
   }
   .service-num { font-size: 11px; }
   .service-title { font-size: clamp(18px, 4.5vw, 24px); }
   .service-arrow { font-size: 18px; }
+  .service-item:hover { padding-left: 0; } /* Disable padding shift on mobile */
+
+  /* ── Bento Grid Mobile ── */
+  .services-bento {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 200px;
+    gap: 3px;
+  }
+  .bento-lg { grid-row: span 1; }
+  .bento-wide { grid-column: span 2; }
+  .bento-content { padding: 16px; }
+  .bento-title { font-size: 16px; }
+  .bento-num { font-size: 10px; margin-bottom: 4px; }
+  .bento-arrow { display: none; }
+  .bento-card img { opacity: 0.55; }
+  .bento-card::before {
+    background: linear-gradient(to top, rgba(9,9,9,0.95) 0%, rgba(9,9,9,0.4) 50%, transparent 80%);
+  }
 
   /* ── Gallery ── */
   .gallery-grid { grid-template-columns: 1fr; }
@@ -1076,13 +1120,27 @@ footer {
   .process-step { grid-template-columns: 1fr; gap: 16px; }
   .process-num { font-size: 48px; }
 
+  /* ── How It Works Mobile ── */
+  .hiw-step:hover { background: transparent; }
+  .hiw-connector { display: none; }
+
+  /* ── CTA Mobile ── */
+  .cta-inner {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    text-align: center;
+  }
+  .cta-inner > div { text-align: center !important; }
+  .cta-inner .btn { width: 100%; justify-content: center; }
+  .cta-phone { font-size: clamp(24px, 7vw, 36px); }
+
   /* ── Footer ── */
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
   .footer-logo-img { width: 48px; height: 48px; }
   .footer-logo-main { font-size: 28px; }
   .footer-tagline { font-size: 12px; margin-top: 8px; }
   .footer-col-title { margin-bottom: 12px; }
-  .footer-link { font-size: 13px; }
+  .footer-link { font-size: 14px; min-height: 36px; display: flex; align-items: center; }
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
@@ -1101,7 +1159,35 @@ footer {
   .divider-accent { margin: 12px 0 20px; }
 
   /* ── Page Hero ── */
-  .page-hero { padding-top: 120px; }
+  .page-hero { padding-top: 120px; padding-bottom: clamp(40px, 8vw, 80px); }
+
+  /* ── Buttons — Touch Targets ── */
+  .btn { min-height: 48px; padding: 14px 28px; font-size: 12px; }
+
+  /* ── Before/After Mobile ── */
+  .ba-container { padding: 2px; }
+  .ba-wrapper { gap: 16px; }
+
+  /* ── Featured Work Header ── */
+  .featured-header { gap: 16px; margin-bottom: 32px; }
+
+  /* ── Chatbot Adjustments ── */
+  .chatbot-toggle { width: 52px; height: 52px; }
+  .chatbot-window { max-height: 420px; }
+
+  /* ── Scroll Progress — thinner on mobile ── */
+  .scroll-progress { height: 2px; }
+
+  /* ── Card Glow — Disable on mobile to save GPU ── */
+  .card-glow:hover {
+    box-shadow: none;
+    transform: none;
+  }
+
+  /* ── Prevent horizontal overflow from any absolutely positioned elements ── */
+  section, .hero, .testi-carousel, .featured-work, .services-preview, .how-it-works, .cta-section {
+    overflow-x: clip;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1114,7 +1200,25 @@ footer {
 
   .testimonial-item { padding: 24px 18px; }
 
-  .btn { padding: 14px 24px; font-size: 12px; }
+  .btn { padding: 14px 24px; font-size: 12px; min-height: 48px; }
+
+  /* ── Bento Single Column on Small Phone ── */
+  .services-bento {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 180px;
+  }
+  .bento-wide { grid-column: span 1; }
+  .bento-content { padding: 14px 16px; }
+  .bento-title { font-size: 18px; }
+
+  /* ── CTA Section Tighter ── */
+  .cta-section { padding: clamp(40px, 8vw, 60px) 0; }
+
+  /* ── Services Page Value Row ── */
+  .services-value-row { grid-template-columns: 1fr 1fr; }
+
+  /* ── Mobile Menu Font Size ── */
+  .nav-mobile-menu .nav-link { font-size: 36px; }
 }
 
 /* ── Chatbot Widget ───────────────────────────────────────── */
@@ -1494,15 +1598,26 @@ footer {
     grid-auto-rows: 200px;
   }
   .bento-lg { grid-row: span 1; }
-  .bento-wide { grid-column: span 1; }
-  .bento-content { padding: 18px; }
-  .bento-title { font-size: 18px; }
+  .bento-wide { grid-column: span 2; }
+  .bento-content { padding: 16px; }
+  .bento-title { font-size: 16px; }
+  .bento-num { font-size: 10px; margin-bottom: 4px; }
+  .bento-arrow { display: none; }
+  .bento-card:active {
+    transform: scale(0.98);
+  }
+  .bento-card:active img {
+    opacity: 0.7;
+  }
 }
 @media (max-width: 480px) {
   .services-bento {
     grid-template-columns: 1fr;
     grid-auto-rows: 180px;
   }
+  .bento-wide { grid-column: span 1; }
+  .bento-content { padding: 14px 16px; }
+  .bento-title { font-size: 18px; }
 }
 
 /* ── Card Glow Hover ──────────────────────────────────────── */
