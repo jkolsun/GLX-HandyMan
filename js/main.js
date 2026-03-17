@@ -86,8 +86,8 @@
     });
   }
 
-  /* ── Scroll Reveal ───────────────────────────────────────── */
-  const reveals = document.querySelectorAll('.reveal');
+  /* ── Scroll Reveal (all reveal types) ───────────────────── */
+  const reveals = document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right');
   if (reveals.length) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -96,7 +96,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
     reveals.forEach(el => observer.observe(el));
   }
@@ -219,16 +219,67 @@
     }
   });
 
-  /* ── Parallax Hero ───────────────────────────────────────── */
+  /* ── Parallax Hero + Gradient Orbs ───────────────────────── */
   const heroVisual = document.querySelector('.hero-visual');
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const orbs = document.querySelectorAll('.gradient-orb');
 
-  if (heroVisual && !isMobile) {
+  if (!isMobile) {
+    if (heroVisual) {
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        heroVisual.style.transform = `translateY(${y * 0.3}px)`;
+      }, { passive: true });
+    }
+
+    // Parallax orbs at different speeds
+    if (orbs.length) {
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        orbs.forEach((orb, i) => {
+          const speed = 0.02 + (i * 0.015);
+          const dir = i % 2 === 0 ? 1 : -1;
+          orb.style.transform = `translateY(${y * speed * dir}px)`;
+        });
+      }, { passive: true });
+    }
+  }
+
+  /* ── Scroll Progress Bar ───────────────────────────────── */
+  const scrollProgress = document.getElementById('scrollProgress');
+  if (scrollProgress) {
     window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      heroVisual.style.transform = `translateY(${y * 0.3}px)`;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = window.scrollY / docHeight;
+      scrollProgress.style.transform = `scaleX(${scrolled})`;
     }, { passive: true });
   }
+
+  /* ── Tilt Effect on Bento Cards ────────────────────────── */
+  document.querySelectorAll('.tilt-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `perspective(600px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) scale(1.02)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(600px) rotateY(0) rotateX(0) scale(1)';
+    });
+  });
+
+  /* ── Magnetic Button Effect ────────────────────────────── */
+  document.querySelectorAll('.btn-primary, .btn-outline').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) translateY(-2px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+    });
+  });
 
   /* ── Mobile Scroll Hint — hide on scroll ────────────────── */
   const scrollHint = document.querySelector('.mobile-scroll-hint');

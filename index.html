@@ -511,14 +511,20 @@
       flex-shrink: 0;
       width: 340px;
       padding: 24px 28px;
-      border: 1px solid var(--border);
-      background: var(--surface);
+      border: 1px solid rgba(201,168,76,0.06);
+      background: rgba(17,17,17,0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       display: flex;
       flex-direction: column;
       gap: 14px;
-      transition: border-color 0.3s;
+      transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s;
     }
-    .testi-card:hover { border-color: var(--accent); }
+    .testi-card:hover {
+      border-color: rgba(201,168,76,0.25);
+      box-shadow: 0 8px 32px rgba(201,168,76,0.1);
+      transform: translateY(-2px);
+    }
     .testi-card-top {
       display: flex;
       align-items: center;
@@ -579,6 +585,7 @@
   </style>
 </head>
 <body>
+  <div class="scroll-progress" id="scrollProgress"></div>
   <div class="page-veil"></div>
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
@@ -621,7 +628,16 @@
   </div>
 
   <!-- ── Hero ────────────────────────────────────────────────── -->
-  <section class="hero">
+  <section class="hero section-mesh">
+    <!-- Ambient gradient orbs -->
+    <div class="gradient-orb orb-gold" style="width:500px;height:500px;top:-10%;right:-5%;animation:orbFloat1 12s ease-in-out infinite;"></div>
+    <div class="gradient-orb orb-warm" style="width:400px;height:400px;bottom:10%;left:-10%;animation:orbFloat2 15s ease-in-out infinite;"></div>
+    <div class="gradient-orb orb-cool" style="width:350px;height:350px;top:40%;left:30%;animation:orbFloat3 18s ease-in-out infinite;"></div>
+    <!-- Floating accent shapes -->
+    <div class="floating-line" style="top:20%;right:15%;"></div>
+    <div class="floating-line" style="top:60%;right:25%;height:80px;animation-delay:-2s;"></div>
+    <div class="floating-cross" style="top:30%;left:45%;animation:orbFloat1 8s ease-in-out infinite;"></div>
+
     <div class="hero-content">
       <img src="images/Grand%20Luxury%20Handyman%20Services%20logos-01.JPG" alt="GLX Logo" class="mobile-hero-logo" />
 
@@ -677,7 +693,8 @@
   </section>
 
   <!-- ── Testimonial Carousel ──────────────────────────────────── -->
-  <section class="testi-carousel">
+  <section class="testi-carousel section-mesh" style="position:relative;">
+    <div class="gradient-orb orb-gold" style="width:350px;height:350px;top:-40%;left:20%;animation:orbFloat2 10s ease-in-out infinite;"></div>
     <div class="testi-track" id="testiTrack">
       <div class="testi-card">
         <div class="testi-card-top">
@@ -761,7 +778,8 @@
   </section>
 
   <!-- ── Services Preview ─────────────────────────────────────── -->
-  <section class="services-preview">
+  <section class="services-preview section-mesh" style="position:relative;">
+    <div class="gradient-orb orb-warm" style="width:300px;height:300px;top:10%;right:-5%;animation:orbFloat3 16s ease-in-out infinite;"></div>
     <div class="container">
       <div class="services-header">
         <div class="reveal">
@@ -781,57 +799,56 @@
         </div>
       </div>
 
-      <!-- Service List -->
-      <div class="reveal">
-        <div class="divider"></div>
-        <div class="service-item" data-cursor data-href="services.html#drywall">
-          <span class="service-num">01</span>
-          <div>
-            <div class="service-title">Drywall &amp; Patching</div>
-            <div class="service-desc">Holes, cracks, water damage, texture matching — any size, any wall.</div>
+      <!-- Bento Services Grid -->
+      <div class="services-bento reveal">
+        <a href="services.html#drywall" class="bento-card bento-lg tilt-card" data-cursor>
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="Drywall repair" />
+          <div class="bento-arrow">→</div>
+          <div class="bento-content">
+            <span class="bento-num">01</span>
+            <div class="bento-title">Drywall &amp; Patching</div>
           </div>
-          <span class="service-arrow">→</span>
-        </div>
-        <div class="service-item" data-cursor data-href="services.html#carpentry">
-          <span class="service-num">02</span>
-          <div>
-            <div class="service-title">Carpentry &amp; Wood</div>
-            <div class="service-desc">Trim, baseboards, shelving, cabinetry, decks, and custom built-ins.</div>
+        </a>
+        <a href="services.html#carpentry" class="bento-card tilt-card" data-cursor>
+          <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=800&q=80" alt="Carpentry" />
+          <div class="bento-arrow">→</div>
+          <div class="bento-content">
+            <span class="bento-num">02</span>
+            <div class="bento-title">Carpentry &amp; Wood</div>
           </div>
-          <span class="service-arrow">→</span>
-        </div>
-        <div class="service-item" data-cursor data-href="services.html#painting">
-          <span class="service-num">03</span>
-          <div>
-            <div class="service-title">Painting &amp; Finishing</div>
-            <div class="service-desc">Interior and exterior. Walls, ceilings, trim — clean lines, no mess.</div>
+        </a>
+        <a href="services.html#painting" class="bento-card tilt-card" data-cursor>
+          <img src="https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?auto=format&fit=crop&w=800&q=80" alt="Painting" />
+          <div class="bento-arrow">→</div>
+          <div class="bento-content">
+            <span class="bento-num">03</span>
+            <div class="bento-title">Painting &amp; Finishing</div>
           </div>
-          <span class="service-arrow">→</span>
-        </div>
-        <div class="service-item" data-cursor data-href="services.html#plumbing">
-          <span class="service-num">04</span>
-          <div>
-            <div class="service-title">Plumbing Repairs</div>
-            <div class="service-desc">Leaks, fixture replacement, faucets, toilets, and shutoffs.</div>
+        </a>
+        <a href="services.html#plumbing" class="bento-card tilt-card" data-cursor>
+          <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=800&q=80" alt="Plumbing" />
+          <div class="bento-arrow">→</div>
+          <div class="bento-content">
+            <span class="bento-num">04</span>
+            <div class="bento-title">Plumbing Repairs</div>
           </div>
-          <span class="service-arrow">→</span>
-        </div>
-        <div class="service-item" data-cursor data-href="services.html#tile">
-          <span class="service-num">05</span>
-          <div>
-            <div class="service-title">Tile &amp; Flooring</div>
-            <div class="service-desc">Bathroom tile, backsplashes, floor repairs, grout, and sealing.</div>
+        </a>
+        <a href="services.html#tile" class="bento-card bento-wide tilt-card" data-cursor>
+          <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80" alt="Tile & Flooring" />
+          <div class="bento-arrow">→</div>
+          <div class="bento-content">
+            <span class="bento-num">05</span>
+            <div class="bento-title">Tile &amp; Flooring</div>
           </div>
-          <span class="service-arrow">→</span>
-        </div>
-        <div class="service-item" data-cursor data-href="services.html#doors">
-          <span class="service-num">06</span>
-          <div>
-            <div class="service-title">Doors &amp; Windows</div>
-            <div class="service-desc">Install, replace, adjust, or repair — inside or out.</div>
+        </a>
+        <a href="services.html#doors" class="bento-card tilt-card" data-cursor>
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=80" alt="Doors & Windows" />
+          <div class="bento-arrow">→</div>
+          <div class="bento-content">
+            <span class="bento-num">06</span>
+            <div class="bento-title">Doors &amp; Windows</div>
           </div>
-          <span class="service-arrow">→</span>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -851,7 +868,7 @@
   </div>
 
   <!-- ── Before/After Work ────────────────────────────────────── -->
-  <section class="featured-work">
+  <section class="featured-work section-mesh">
     <div class="container">
       <div class="featured-header">
         <div class="reveal">
@@ -922,7 +939,7 @@
   </section>
 
   <!-- ── How It Works ─────────────────────────────────────────── -->
-  <section class="how-it-works">
+  <section class="how-it-works section-mesh">
     <div class="container">
       <div class="section-label reveal" style="margin-bottom: 56px;">
         <span class="label">The Process</span>
@@ -950,9 +967,11 @@
   </section>
 
   <!-- ── CTA ──────────────────────────────────────────────────── -->
-  <section class="cta-section">
-    <div class="container">
-      <div class="divider" style="margin-bottom: 60px;"></div>
+  <section class="cta-section cta-glow-wrap section-mesh">
+    <div class="gradient-orb orb-gold" style="width:400px;height:400px;top:20%;right:10%;animation:orbFloat2 14s ease-in-out infinite;"></div>
+    <div class="gradient-orb orb-warm" style="width:300px;height:300px;bottom:10%;left:5%;animation:orbFloat1 10s ease-in-out infinite;"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <div class="divider-glow" style="margin-bottom: 60px;"></div>
       <div class="cta-inner">
         <div class="reveal">
           <div class="section-label">
