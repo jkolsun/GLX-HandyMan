@@ -200,13 +200,28 @@
       e.preventDefault();
       const btn = form.querySelector('[type="submit"]');
       const orig = btn.innerHTML;
-      btn.innerHTML = '<span>Message Sent</span> <span class="btn-icon"></span>';
-      btn.style.background = '#2a7a3b';
-      setTimeout(() => {
-        btn.innerHTML = orig;
-        btn.style.background = '';
-        form.reset();
-      }, 3500);
+      btn.innerHTML = '<span>Sending...</span>';
+      btn.disabled = true;
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' },
+      }).then(res => {
+        if (res.ok) {
+          btn.innerHTML = '<span>Message Sent!</span> <span class="btn-icon"></span>';
+          btn.style.background = '#2a7a3b';
+          form.reset();
+          setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; }, 4000);
+        } else {
+          btn.innerHTML = '<span>Error — Try Again</span>';
+          btn.style.background = '#b91c1c';
+          setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; }, 3000);
+        }
+      }).catch(() => {
+        btn.innerHTML = '<span>Error — Try Again</span>';
+        btn.style.background = '#b91c1c';
+        setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; }, 3000);
+      });
     });
   }
 
