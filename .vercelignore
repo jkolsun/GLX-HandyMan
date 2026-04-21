@@ -1,0 +1,6 @@
+*.HEIC
+*.heic
+*.heic 2
+{css,js,images}
+.DS_Store
+.git

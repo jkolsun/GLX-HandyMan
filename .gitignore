@@ -3,3 +3,4 @@
 # Source HEIC files (converted JPGs are in images/services/)
 *.HEIC
 *.heic
+.DS_Store
