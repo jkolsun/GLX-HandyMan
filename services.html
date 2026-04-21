@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services — GLX Handyman</title>
-  <meta name="description" content="GLX Handyman offers drywall repair, carpentry, painting, plumbing, tile, doors, windows, general home maintenance, deck building, and outdoor projects." />
+  <meta name="description" content="GLX Handyman: drywall & painting, carpentry, demolition, general handyman, tile, doors & windows, general maintenance, deck & patio, outdoor projects. Real before/after work shown on site." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -156,6 +156,134 @@
       .svr-item:last-child { border-bottom: none; }
       .svr-item:nth-child(2) { border-right: none; }
     }
+
+    /* ── Before/After Slider ─────────────────────────────── */
+    .ba-gallery-strip {
+      border-bottom: 1px solid var(--border);
+      padding: 40px 60px 56px;
+      background: var(--surface);
+    }
+    .ba-gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .ba-gallery-grid.two { grid-template-columns: 1fr 1fr; }
+    .ba-gallery-head {
+      max-width: 1100px;
+      margin: 0 auto 22px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .ba-gallery-head .t {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .ba-gallery-head .h {
+      font-family: var(--font-display);
+      font-size: 26px;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+    .ba-gallery-head .hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+    .ba-slider {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      user-select: none;
+      background: var(--surface-2);
+      touch-action: none;
+      cursor: ew-resize;
+    }
+    .ba-slider .ba-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+    .ba-slider .ba-img-after {
+      clip-path: inset(0 0 0 var(--ba-pos, 50%));
+      -webkit-clip-path: inset(0 0 0 var(--ba-pos, 50%));
+    }
+    .ba-slider .ba-divider {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: var(--ba-pos, 50%);
+      width: 2px;
+      background: rgba(255,255,255,0.9);
+      transform: translateX(-50%);
+      pointer-events: none;
+      box-shadow: 0 0 14px rgba(0,0,0,0.45);
+    }
+    .ba-slider .ba-handle {
+      position: absolute;
+      top: 50%;
+      left: var(--ba-pos, 50%);
+      transform: translate(-50%, -50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.45), 0 0 0 3px rgba(255,255,255,0.9);
+      pointer-events: none;
+    }
+    .ba-slider .ba-handle::before,
+    .ba-slider .ba-handle::after {
+      content: "";
+      position: absolute;
+      width: 0; height: 0;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+    }
+    .ba-slider .ba-handle::before {
+      border-right: 7px solid currentColor;
+      left: 12px;
+    }
+    .ba-slider .ba-handle::after {
+      border-left: 7px solid currentColor;
+      right: 12px;
+    }
+    .ba-slider .ba-label {
+      position: absolute;
+      top: 16px;
+      padding: 5px 12px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: rgba(10,10,10,0.85);
+      color: #fff;
+      backdrop-filter: blur(4px);
+      pointer-events: none;
+    }
+    .ba-slider .ba-label-before { left: 16px; }
+    .ba-slider .ba-label-after { right: 16px; }
+
+    @media (max-width: 900px) {
+      .ba-gallery-grid.two { grid-template-columns: 1fr; }
+      .ba-gallery-strip { padding: 28px 20px 36px; }
+      .ba-gallery-head .h { font-size: 22px; }
+    }
   </style>
   <!-- Bright Automations tracking -->
   <script src="https://brightengine-production.up.railway.app/api/track/ce287e97371f540f" defer></script>
@@ -249,26 +377,27 @@
   <!-- ── Service Blocks ────────────────────────────────────────── -->
   <div class="container" style="padding-bottom: var(--section-pad);">
 
-    <!-- 01 Drywall -->
+    <!-- 01 Drywall & Painting -->
     <div id="drywall" class="service-full-block reveal">
       <div class="sfb-content">
         <div class="label">Service 01</div>
-        <h2 class="display-md">Drywall &amp;<br>Patching</h2>
+        <h2 class="display-md">Drywall &amp;<br>Painting</h2>
         <p class="sfb-desc">
-          Holes, dings, water damage, texture matching — no job is too small or too large. We repair and refinish so seamlessly, you won't know it was ever damaged.
+          Holes, dings, water damage, texture matching — plus full interior and exterior painting. We patch, prep, and paint seamlessly so walls look like they were never touched, and your finish coats hold for years.
         </p>
         <div class="sfb-tags">
           <span class="sfb-tag">Hole Repair</span>
-          <span class="sfb-tag">Water Damage</span>
           <span class="sfb-tag">Texture Match</span>
-          <span class="sfb-tag">Full Panels</span>
+          <span class="sfb-tag">Interior Paint</span>
+          <span class="sfb-tag">Exterior Paint</span>
+          <span class="sfb-tag">Trim &amp; Ceilings</span>
         </div>
         <a href="/contact" class="sfb-cta">
           Book This Service <span class="sfb-cta-line"></span>
         </a>
       </div>
       <div class="sfb-visual">
-        <img src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&w=800&q=80" alt="Drywall repair and patching" />
+        <img src="images/services/IMG_6710.jpg" alt="Fresh interior paint and clean finish by GLX Handyman" />
         <div class="sfb-num">01</div>
       </div>
     </div>
@@ -297,47 +426,68 @@
       </div>
     </div>
 
-    <!-- 03 Painting -->
-    <div id="painting" class="service-full-block reveal">
+    <!-- 03 Demolition -->
+    <div id="demo" class="service-full-block reveal">
       <div class="sfb-content">
         <div class="label">Service 03</div>
-        <h2 class="display-md">Painting &amp;<br>Finishing</h2>
+        <h2 class="display-md">Demo &amp;<br>Demolition</h2>
         <p class="sfb-desc">
-          Interior and exterior painting done right. Walls, ceilings, trim — clean lines, proper prep, no mess. We don't cut corners on preparation, and it shows in the result.
+          Interior tear-outs, wall removal, ceiling demo, floor rip-up, and cleanup hauled off in the same visit. We tarp and protect, demo clean, and leave the space prepped and ready for whatever comes next.
         </p>
         <div class="sfb-tags">
-          <span class="sfb-tag">Interior</span>
-          <span class="sfb-tag">Exterior</span>
-          <span class="sfb-tag">Trim &amp; Doors</span>
-          <span class="sfb-tag">Ceilings</span>
+          <span class="sfb-tag">Wall Removal</span>
+          <span class="sfb-tag">Ceiling Demo</span>
+          <span class="sfb-tag">Floor Tear-up</span>
+          <span class="sfb-tag">Haul-Away</span>
         </div>
         <a href="/contact" class="sfb-cta">
           Book This Service <span class="sfb-cta-line"></span>
         </a>
       </div>
       <div class="sfb-visual">
-        <img src="images/services/IMG_6710.jpg" alt="Fresh interior painting with new light fixture by GLX Handyman" />
+        <img src="images/services/IMG_5946.jpg" alt="Finished hallway after full demo and refinish by GLX Handyman" />
         <div class="sfb-num">03</div>
       </div>
     </div>
 
-    <!-- 04 Plumbing -->
-    <div id="plumbing" class="service-full-block reversed reveal">
+    <!-- Demo before/after slider -->
+    <div class="ba-gallery-strip reveal">
+      <div class="ba-gallery-head">
+        <div>
+          <div class="t">— Before / After</div>
+          <div class="h">Full hallway demo &amp; refinish</div>
+        </div>
+        <div class="hint">Drag the handle ←→</div>
+      </div>
+      <div class="ba-gallery-grid">
+        <div class="ba-slider" data-ba>
+          <img class="ba-img ba-img-before" src="images/services/IMG_5955.jpg" alt="Hallway before — ceiling torn out, framing exposed" />
+          <img class="ba-img ba-img-after"  src="images/services/IMG_5946.jpg" alt="Hallway after — refinished walls, wood floor" />
+          <div class="ba-divider"></div>
+          <div class="ba-handle" aria-hidden></div>
+          <span class="ba-label ba-label-before">Before</span>
+          <span class="ba-label ba-label-after">After</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 General Handyman Services -->
+    <div id="handyman" class="service-full-block reversed reveal">
       <div class="sfb-visual">
-        <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=800&q=80" alt="Plumbing repair work" />
+        <img src="images/services/IMG_6927.jpg" alt="Finished kitchen with pendant lights and sliding doors by GLX Handyman" />
         <div class="sfb-num">04</div>
       </div>
       <div class="sfb-content">
         <div class="label">Service 04</div>
-        <h2 class="display-md">Plumbing<br>Repairs</h2>
+        <h2 class="display-md">General<br>Handyman Services</h2>
         <p class="sfb-desc">
-          Leaks, drips, slow drains, fixture replacement, toilet repairs — the small stuff that becomes a big problem when ignored. We handle it quickly, affordably.
+          The catch-all for everything else — fixture swaps, leak fixes, toilet repairs, TV mounting, minor electrical, assembly, small installs. One phone call for the whole list you've been putting off.
         </p>
         <div class="sfb-tags">
-          <span class="sfb-tag">Leak Repair</span>
-          <span class="sfb-tag">Fixtures</span>
-          <span class="sfb-tag">Toilets</span>
-          <span class="sfb-tag">Faucets</span>
+          <span class="sfb-tag">Fixture Swaps</span>
+          <span class="sfb-tag">Small Repairs</span>
+          <span class="sfb-tag">Mounting</span>
+          <span class="sfb-tag">Minor Electrical</span>
         </div>
         <a href="/contact" class="sfb-cta">
           Book This Service <span class="sfb-cta-line"></span>
@@ -372,7 +522,7 @@
     <!-- 06 Doors & Windows -->
     <div id="doors" class="service-full-block reversed reveal">
       <div class="sfb-visual">
-        <img src="images/services/IMG_1907.jpg" alt="LED bathroom mirror and cabinet installation by GLX Handyman" />
+        <img src="images/services/IMG_5905.jpg" alt="Newly installed interior door with brass hardware by GLX Handyman" />
         <div class="sfb-num">06</div>
       </div>
       <div class="sfb-content">
@@ -390,6 +540,35 @@
         <a href="/contact" class="sfb-cta">
           Book This Service <span class="sfb-cta-line"></span>
         </a>
+      </div>
+    </div>
+
+    <!-- Doors & Windows before/after sliders -->
+    <div class="ba-gallery-strip reveal">
+      <div class="ba-gallery-head">
+        <div>
+          <div class="t">— Before / After</div>
+          <div class="h">Real door &amp; window installs</div>
+        </div>
+        <div class="hint">Drag each handle ←→</div>
+      </div>
+      <div class="ba-gallery-grid two">
+        <div class="ba-slider" data-ba>
+          <img class="ba-img ba-img-before" src="images/services/IMG_5887.jpg" alt="Exterior door before — rusted frame" />
+          <img class="ba-img ba-img-after"  src="images/services/IMG_5899.jpg" alt="Exterior door after — new white slider installed" />
+          <div class="ba-divider"></div>
+          <div class="ba-handle" aria-hidden></div>
+          <span class="ba-label ba-label-before">Before</span>
+          <span class="ba-label ba-label-after">After</span>
+        </div>
+        <div class="ba-slider" data-ba>
+          <img class="ba-img ba-img-before" src="images/services/IMG_5812.jpg" alt="Outbuilding before — wood siding, no window" />
+          <img class="ba-img ba-img-after"  src="images/services/IMG_5608.jpg" alt="Outbuilding after — new window installed, stained finish" />
+          <div class="ba-divider"></div>
+          <div class="ba-handle" aria-hidden></div>
+          <span class="ba-label ba-label-before">Before</span>
+          <span class="ba-label ba-label-after">After</span>
+        </div>
       </div>
     </div>
 
@@ -504,11 +683,12 @@
         <div>
           <div class="footer-col-title">Services</div>
           <div class="footer-links">
-            <a href="/services#drywall" class="footer-link">Drywall &amp; Patching</a>
+            <a href="/services#drywall" class="footer-link">Drywall &amp; Painting</a>
             <a href="/services#carpentry" class="footer-link">Carpentry</a>
-            <a href="/services#painting" class="footer-link">Painting</a>
-            <a href="/services#plumbing" class="footer-link">Plumbing</a>
+            <a href="/services#demo" class="footer-link">Demo &amp; Demolition</a>
+            <a href="/services#handyman" class="footer-link">General Handyman</a>
             <a href="/services#tile" class="footer-link">Tile &amp; Flooring</a>
+            <a href="/services#doors" class="footer-link">Doors &amp; Windows</a>
             <a href="/services#decks" class="footer-link">Deck &amp; Patio</a>
             <a href="/services#outdoor" class="footer-link">Outdoor Projects</a>
           </div>
@@ -568,5 +748,33 @@
   </div>
 
   <script src="js/main.js"></script>
+  <script>
+    // Before/After slider drag handler
+    (function () {
+      function initSlider(el) {
+        el.style.setProperty('--ba-pos', '50%');
+        let dragging = false;
+        function setFromClientX(clientX) {
+          const rect = el.getBoundingClientRect();
+          const x = Math.min(Math.max(clientX - rect.left, 0), rect.width);
+          const pct = (x / rect.width) * 100;
+          el.style.setProperty('--ba-pos', pct + '%');
+        }
+        el.addEventListener('pointerdown', function (e) {
+          dragging = true;
+          el.setPointerCapture(e.pointerId);
+          setFromClientX(e.clientX);
+        });
+        el.addEventListener('pointermove', function (e) {
+          if (!dragging) return;
+          setFromClientX(e.clientX);
+        });
+        el.addEventListener('pointerup', function () { dragging = false; });
+        el.addEventListener('pointercancel', function () { dragging = false; });
+        el.addEventListener('click', function (e) { setFromClientX(e.clientX); });
+      }
+      document.querySelectorAll('[data-ba]').forEach(initSlider);
+    })();
+  </script>
 </body>
 </html>
