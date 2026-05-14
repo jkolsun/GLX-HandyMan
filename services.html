@@ -284,6 +284,272 @@
       .ba-gallery-strip { padding: 28px 20px 36px; }
       .ba-gallery-head .h { font-size: 22px; }
     }
+
+    /* ── Service block click affordance ──────────────────── */
+    .service-full-block {
+      cursor: pointer;
+    }
+    .service-full-block .sfb-content {
+      position: relative;
+    }
+    .sfb-gallery-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--dur) var(--ease), gap var(--dur) var(--ease);
+      margin-top: 6px;
+    }
+    .sfb-gallery-link:hover { color: var(--accent); gap: 14px; }
+    .sfb-gallery-link svg {
+      width: 14px; height: 14px;
+      flex-shrink: 0;
+    }
+    .sfb-gallery-link .count {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 22px; height: 22px;
+      padding: 0 8px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      border-radius: 999px;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      margin-left: 4px;
+    }
+    .service-full-block:hover .sfb-gallery-link {
+      color: var(--accent);
+    }
+    .sfb-visual {
+      position: relative;
+    }
+    .sfb-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 60%, rgba(0,0,0,0.55));
+      opacity: 0;
+      transition: opacity var(--dur) var(--ease);
+      pointer-events: none;
+    }
+    .service-full-block:hover .sfb-visual::after { opacity: 1; }
+    .sfb-visual-overlay-cta {
+      position: absolute;
+      bottom: 16px; right: 16px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      background: rgba(15,15,15,0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.82);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transform: translateY(8px);
+      opacity: 0;
+      transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease), background var(--dur) var(--ease);
+      pointer-events: none;
+    }
+    .sfb-visual-overlay-cta svg { width: 12px; height: 12px; }
+    .service-full-block:hover .sfb-visual-overlay-cta {
+      opacity: 1;
+      transform: translateY(0);
+      background: var(--accent);
+      color: var(--black);
+      border-color: var(--accent);
+    }
+
+    /* ── Gallery Lightbox ──────────────────────────────── */
+    .gallery-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.32s var(--ease);
+      display: flex;
+      flex-direction: column;
+    }
+    .gallery-lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .gallery-lightbox.open .gl-stage img {
+      transform: scale(1);
+    }
+    body.gl-locked { overflow: hidden; }
+
+    .gl-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 36px;
+      flex-shrink: 0;
+    }
+    .gl-head-l {
+      min-width: 0;
+    }
+    .gl-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .gl-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      letter-spacing: 0.02em;
+      color: #fff;
+      line-height: 1;
+    }
+    .gl-counter {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.08em;
+      margin-right: 24px;
+    }
+    .gl-counter strong { color: #fff; font-weight: 600; }
+    .gl-close {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: #fff;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+    }
+    .gl-close:hover { background: var(--accent); color: var(--black); border-color: var(--accent); transform: rotate(90deg); }
+    .gl-close svg { width: 18px; height: 18px; }
+
+    .gl-stage {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 80px;
+      overflow: hidden;
+    }
+    .gl-stage img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+      transform: scale(0.96);
+      transition: transform 0.5s var(--ease), opacity 0.32s var(--ease);
+      cursor: zoom-in;
+    }
+    .gl-stage.fading img { opacity: 0.4; }
+    .gl-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: #fff;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+      z-index: 2;
+    }
+    .gl-arrow:hover { background: var(--accent); color: var(--black); border-color: var(--accent); }
+    .gl-arrow:disabled { opacity: 0.25; cursor: not-allowed; }
+    .gl-arrow svg { width: 20px; height: 20px; }
+    .gl-prev { left: 16px; }
+    .gl-next { right: 16px; }
+    .gl-prev:hover:not(:disabled) { transform: translateY(-50%) translateX(-4px); }
+    .gl-next:hover:not(:disabled) { transform: translateY(-50%) translateX(4px); }
+
+    .gl-foot {
+      flex-shrink: 0;
+      padding: 18px 36px 28px;
+    }
+    .gl-thumbs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scroll-behavior: smooth;
+      padding-bottom: 6px;
+    }
+    .gl-thumbs::-webkit-scrollbar { height: 4px; }
+    .gl-thumbs::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 4px; }
+    .gl-thumb {
+      width: 84px;
+      height: 60px;
+      flex-shrink: 0;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.4;
+      border: 2px solid transparent;
+      transition: opacity var(--dur) var(--ease), border-color var(--dur) var(--ease);
+      background: var(--surface-2);
+    }
+    .gl-thumb:hover { opacity: 0.85; }
+    .gl-thumb.active {
+      opacity: 1;
+      border-color: var(--accent);
+    }
+    .gl-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .gl-caption {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.04em;
+      max-width: 720px;
+      margin: 0 auto 16px;
+      text-align: center;
+      line-height: 1.55;
+      min-height: 18px;
+    }
+
+    @media (max-width: 720px) {
+      .gl-head { padding: 16px 20px; }
+      .gl-title { font-size: 20px; }
+      .gl-counter { display: none; }
+      .gl-stage { padding: 0 14px; }
+      .gl-arrow { width: 44px; height: 44px; }
+      .gl-prev { left: 8px; }
+      .gl-next { right: 8px; }
+      .gl-foot { padding: 12px 20px 22px; }
+      .gl-thumb { width: 64px; height: 46px; }
+      .gl-caption { font-size: 12px; margin-bottom: 10px; }
+      .sfb-visual-overlay-cta {
+        opacity: 1;
+        transform: none;
+        bottom: 12px; right: 12px;
+        padding: 7px 11px;
+        font-size: 9.5px;
+        background: rgba(15,15,15,0.85);
+      }
+    }
   </style>
   <!-- Bright Automations tracking -->
   <script src="https://brightengine-production.up.railway.app/api/track/ce287e97371f540f" defer></script>
@@ -445,7 +711,7 @@
         </a>
       </div>
       <div class="sfb-visual">
-        <img src="images/services/IMG_5946.jpg" alt="Finished hallway after full demo and refinish by GLX Handyman" />
+        <img src="images/services/IMG_5955.jpg" alt="Mid-demo hallway — ceiling torn out, framing exposed by GLX Handyman" />
         <div class="sfb-num">03</div>
       </div>
     </div>
@@ -461,8 +727,8 @@
       </div>
       <div class="ba-gallery-grid">
         <div class="ba-slider" data-ba>
-          <img class="ba-img ba-img-before" src="images/services/IMG_5955.jpg" alt="Hallway before — ceiling torn out, framing exposed" />
-          <img class="ba-img ba-img-after"  src="images/services/IMG_5946.jpg" alt="Hallway after — refinished walls, wood floor" />
+          <img class="ba-img ba-img-before" src="images/services/IMG_5946.jpg" alt="Hallway before — original finished walls and wood floor" />
+          <img class="ba-img ba-img-after"  src="images/services/IMG_5955.jpg" alt="Hallway after demo — ceiling torn out, framing and insulation exposed, ready for refinish" />
           <div class="ba-divider"></div>
           <div class="ba-handle" aria-hidden></div>
           <span class="ba-label ba-label-before">Before</span>
@@ -774,6 +1040,249 @@
         el.addEventListener('click', function (e) { setFromClientX(e.clientX); });
       }
       document.querySelectorAll('[data-ba]').forEach(initSlider);
+    })();
+  </script>
+
+  <!-- ── Per-Service Gallery Lightbox ─────────────────────── -->
+  <div class="gallery-lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="gl-head">
+      <div class="gl-head-l">
+        <div class="gl-eyebrow" id="glEyebrow">Service Gallery</div>
+        <div class="gl-title" id="glTitle">—</div>
+      </div>
+      <div style="display:flex; align-items:center;">
+        <span class="gl-counter"><strong id="glCurrent">1</strong> / <span id="glTotal">1</span></span>
+        <button type="button" class="gl-close" id="glClose" aria-label="Close gallery">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="gl-stage" id="glStage">
+      <button type="button" class="gl-arrow gl-prev" id="glPrev" aria-label="Previous photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <img id="glImage" src="" alt="" />
+      <button type="button" class="gl-arrow gl-next" id="glNext" aria-label="Next photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="gl-foot">
+      <div class="gl-caption" id="glCaption">—</div>
+      <div class="gl-thumbs" id="glThumbs" role="tablist" aria-label="Gallery thumbnails"></div>
+    </div>
+  </div>
+
+  <script>
+    // Per-service gallery data
+    const SERVICE_GALLERIES = {
+      drywall: {
+        title: "Drywall & Painting",
+        eyebrow: "Service 01 · Drywall & Painting",
+        items: [
+          { src: "images/services/IMG_6710.jpg", caption: "Fresh interior paint with crisp edges and clean ceilings." },
+          { src: "images/services/IMG_4434.jpg", caption: "Mid-job kitchen — bold accent paint, prepped trim, masked tile." }
+        ]
+      },
+      carpentry: {
+        title: "Carpentry & Woodwork",
+        eyebrow: "Service 02 · Carpentry & Woodwork",
+        items: [
+          { src: "images/services/IMG_1629.jpg", caption: "Custom built-in cabinetry with precision-fit shelves." },
+          { src: "images/services/IMG_1907.jpg", caption: "LED-lit display case — built, finished, and installed in place." },
+          { src: "images/services/IMG_5732.jpg", caption: "French panel cabinet door — built from raw stock and finished out." },
+          { src: "images/services/IMG_5888.jpg", caption: "Restored original wood door — refinished, rehung, and squared up." }
+        ]
+      },
+      demo: {
+        title: "Demo & Demolition",
+        eyebrow: "Service 03 · Demo & Demolition",
+        items: [
+          { src: "images/services/IMG_5955.jpg", caption: "Mid-demo: ceiling torn out, framing exposed, insulation pulled — ready for the rebuild." },
+          { src: "images/services/IMG_5946.jpg", caption: "Same hallway, finished — every demoed surface refinished and put back together." }
+        ]
+      },
+      handyman: {
+        title: "General Handyman Services",
+        eyebrow: "Service 04 · General Handyman",
+        items: [
+          { src: "images/services/IMG_6927.jpg", caption: "Finished kitchen with pendant lights, sliding doors, and refinished surfaces." },
+          { src: "images/services/IMG_5574.jpg", caption: "Cabinet install in progress — fresh paint, new fixtures, ready for the next phase." },
+          { src: "images/services/IMG_4434.jpg", caption: "Kitchen punch-list completed in a single visit — paint, mounting, prep work." }
+        ]
+      },
+      tile: {
+        title: "Tile & Flooring",
+        eyebrow: "Service 05 · Tile & Flooring",
+        items: [
+          { src: "images/services/IMG_4386.jpg", caption: "Hardwood flooring installation — boards laid clean and level." },
+          { src: "images/services/IMG_4434.jpg", caption: "Tile floor and backsplash holding up under heavy daily use." }
+        ]
+      },
+      doors: {
+        title: "Doors & Windows",
+        eyebrow: "Service 06 · Doors & Windows",
+        items: [
+          { src: "images/services/IMG_5905.jpg", caption: "Newly installed interior door with brass hardware." },
+          { src: "images/services/IMG_5887.jpg", caption: "Exterior door before — rusted frame and damaged surround." },
+          { src: "images/services/IMG_5899.jpg", caption: "Exterior door after — new white slider, weatherstripped and squared." },
+          { src: "images/services/IMG_5732.jpg", caption: "Custom french-panel door pre-install." },
+          { src: "images/services/IMG_5888.jpg", caption: "Restored original wood door — original character, modern hardware." }
+        ]
+      },
+      maintenance: {
+        title: "General Maintenance",
+        eyebrow: "Service 07 · General Maintenance",
+        items: [
+          { src: "images/services/IMG_4468.jpg", caption: "Kitchen remodel touch-ups and appliance install." },
+          { src: "images/services/IMG_4468_2.jpg", caption: "Same kitchen, different angle — every detail dialed in." },
+          { src: "images/services/IMG_5574.jpg", caption: "Whole-house punch list — fixture replacements, cabinet hangs, paint touch-ups." }
+        ]
+      },
+      decks: {
+        title: "Deck & Patio",
+        eyebrow: "Service 08 · Deck & Patio",
+        items: [
+          { src: "images/services/IMG_2872.jpg", caption: "Custom deck build — framing, decking, and railing." }
+        ]
+      },
+      outdoor: {
+        title: "Outdoor Projects",
+        eyebrow: "Service 09 · Outdoor Projects",
+        items: [
+          { src: "images/services/IMG_2538.jpg", caption: "Outdoor planter and exterior trim work." },
+          { src: "images/services/IMG_4623.jpg", caption: "Backyard outbuilding before — weathered siding, damaged window frame." },
+          { src: "images/services/IMG_4645.jpg", caption: "Same outbuilding after — new siding, refinished window, squared up clean." },
+          { src: "images/services/IMG_5608.jpg", caption: "Outbuilding before — original siding and fenestration." },
+          { src: "images/services/IMG_5812.jpg", caption: "Outbuilding after — refinished and weather-sealed for years of service." }
+        ]
+      }
+    };
+
+    (function () {
+      const lb = document.getElementById('galleryLightbox');
+      const glStage = document.getElementById('glStage');
+      const glImage = document.getElementById('glImage');
+      const glTitle = document.getElementById('glTitle');
+      const glEyebrow = document.getElementById('glEyebrow');
+      const glCaption = document.getElementById('glCaption');
+      const glCurrent = document.getElementById('glCurrent');
+      const glTotal = document.getElementById('glTotal');
+      const glThumbs = document.getElementById('glThumbs');
+      const glPrev = document.getElementById('glPrev');
+      const glNext = document.getElementById('glNext');
+      const glClose = document.getElementById('glClose');
+
+      let currentItems = [];
+      let currentIdx = 0;
+
+      function preload(src) {
+        if (!src) return;
+        const i = new Image();
+        i.src = src;
+      }
+      function setIndex(idx, animate = true) {
+        if (!currentItems.length) return;
+        const len = currentItems.length;
+        if (idx < 0) idx = 0;
+        if (idx >= len) idx = len - 1;
+        currentIdx = idx;
+        if (animate) glStage.classList.add('fading');
+        const item = currentItems[idx];
+        setTimeout(() => {
+          glImage.src = item.src;
+          glImage.alt = item.caption || '';
+          glCaption.textContent = item.caption || '';
+          glCurrent.textContent = String(idx + 1);
+          glStage.classList.remove('fading');
+        }, animate ? 160 : 0);
+        glPrev.disabled = idx === 0;
+        glNext.disabled = idx === len - 1;
+        // thumb active state
+        glThumbs.querySelectorAll('.gl-thumb').forEach((t, i) => {
+          t.classList.toggle('active', i === idx);
+          if (i === idx) t.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        });
+        // preload neighbors
+        if (idx + 1 < len) preload(currentItems[idx + 1].src);
+        if (idx - 1 >= 0) preload(currentItems[idx - 1].src);
+      }
+      function open(serviceId) {
+        const data = SERVICE_GALLERIES[serviceId];
+        if (!data || !data.items.length) return;
+        currentItems = data.items;
+        glTitle.textContent = data.title;
+        glEyebrow.textContent = data.eyebrow;
+        glTotal.textContent = String(currentItems.length);
+        // build thumbs
+        glThumbs.innerHTML = '';
+        currentItems.forEach((it, i) => {
+          const t = document.createElement('button');
+          t.type = 'button';
+          t.className = 'gl-thumb';
+          t.setAttribute('role', 'tab');
+          t.setAttribute('aria-label', 'Photo ' + (i + 1));
+          t.innerHTML = '<img src="' + it.src + '" alt="" loading="lazy" />';
+          t.addEventListener('click', () => setIndex(i));
+          glThumbs.appendChild(t);
+        });
+        setIndex(0, false);
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('gl-locked');
+      }
+      function close() {
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('gl-locked');
+      }
+
+      glPrev.addEventListener('click', () => setIndex(currentIdx - 1));
+      glNext.addEventListener('click', () => setIndex(currentIdx + 1));
+      glClose.addEventListener('click', close);
+      lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+      glImage.addEventListener('click', () => setIndex(currentIdx + 1));
+
+      document.addEventListener('keydown', (e) => {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowLeft') setIndex(currentIdx - 1);
+        else if (e.key === 'ArrowRight') setIndex(currentIdx + 1);
+      });
+
+      // Wire each service block
+      document.querySelectorAll('.service-full-block[id]').forEach((block) => {
+        const id = block.id;
+        if (!SERVICE_GALLERIES[id]) return;
+        const count = SERVICE_GALLERIES[id].items.length;
+        // Add overlay CTA on the visual
+        const visual = block.querySelector('.sfb-visual');
+        if (visual) {
+          const overlay = document.createElement('div');
+          overlay.className = 'sfb-visual-overlay-cta';
+          overlay.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>View ' + count + ' Photo' + (count === 1 ? '' : 's');
+          visual.appendChild(overlay);
+        }
+        // Add small gallery link near CTA
+        const cta = block.querySelector('.sfb-cta');
+        if (cta && cta.parentElement) {
+          const link = document.createElement('a');
+          link.className = 'sfb-gallery-link';
+          link.href = '#' + id;
+          link.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>View Gallery <span class="count">' + count + '</span>';
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            open(id);
+          });
+          cta.parentElement.insertBefore(link, cta.nextSibling);
+        }
+
+        // Make whole block clickable (but ignore clicks on internal links/buttons)
+        block.addEventListener('click', (e) => {
+          if (e.target.closest('a, button')) return;
+          open(id);
+        });
+      });
     })();
   </script>
 </body>

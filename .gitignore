@@ -1,6 +1,13 @@
 .vercel
-
-# Source HEIC files (converted JPGs are in images/services/)
-*.HEIC
-*.heic
+node_modules
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
 .DS_Store
+.AppleDouble
+.vscode/
+*.swp
+Thumbs.db
+*.log
